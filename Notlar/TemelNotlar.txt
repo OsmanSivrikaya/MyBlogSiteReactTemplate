@@ -1,0 +1,3 @@
+state kullanımı 
+const [data, setData] = useState(); 
+Burda tanımlanan data değeri kullanmak için tanımlanır eğer data'da değişiklik yapılacak ise setData kulanılır. eğer başlangıç değeri verilmek isteniyorsa useState("data") şeklinde kullanılabilir.
