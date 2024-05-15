@@ -1,18 +1,19 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import "./index.css";
+import "./css/index.css";
 import App from "./App";
 import { Provider } from "react-redux";
 import { store } from "./redux/store";
 
 //style için ekleniyor
-import "bootstrap/dist/css/bootstrap.min.css";
-import "@fontsource/source-sans-pro";
-import "./css/templatemo-video-catalog.css";
+import "./css/bootstrap.min.css";
 import "./fontawesome/css/all.min.css";
 import "./js/jquery-3.4.1.min.js";
 import "./js/bootstrap.min.js";
-import "./js/parallax.min.js";
+
+import "@fontsource/source-sans-pro";
+import "./user/js/parallax.min.js";
+import "./user/css/templatemo-video-catalog.css";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

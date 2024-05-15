@@ -1,6 +1,6 @@
 export const routes = {
     login: {
-        path: "/login",
+        path: "/admin/login",
         title: "Giriş",
     },
     main: {
@@ -20,6 +20,7 @@ export const routes = {
         title: "İletişim",
     },
     notFound: {
+        path: "*",
         title: "NotFound",
     },
 };
