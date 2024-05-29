@@ -1,5 +1,10 @@
 // App.js
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {
+    BrowserRouter as Router,
+    Routes,
+    Route,
+    Navigate,
+} from "react-router-dom";
 import { lazy, Suspense } from "react";
 
 import R from "./router";
@@ -11,6 +16,7 @@ import HeaderHome from "/src/user/components/shareds/HeaderHome";
 const LoginPage = lazy(() => import("../admin/pages/Login"));
 import AdminLayout from "/src/admin/components/layout/AdminLayout";
 import AdminHomePage from "/src/admin/pages/Home";
+import BlogPage from "/src/admin/pages/Blog";
 //#endregion
 
 //#region User
@@ -21,9 +27,20 @@ import ContactPage from "/src/user/pages/Contact";
 //#endregion
 
 import NotFoundPage from "/src/user/pages/NotFound";
+import PrivateRoute from "./privateRoute";
 
 const Section = () => {
-    const { login, main, blog, about, contact, notFound } = R;
+    const {
+        login,
+        main,
+        blog,
+        about,
+        contact,
+        notFound,
+        adminHome,
+        adminBlog,
+    } = R;
+
     return (
         <Router>
             <Routes>
@@ -45,7 +62,22 @@ const Section = () => {
                     }
                 />
                 <Route element={<AdminLayout />} exact>
-                    <Route path="/admin/" element={<AdminHomePage />} />
+                    <Route
+                        path={adminHome.path}
+                        element={
+                            <PrivateRoute>
+                                <AdminHomePage />{" "}
+                            </PrivateRoute>
+                        }
+                    />
+                    <Route
+                        path={adminBlog.path}
+                        element={
+                            <PrivateRoute>
+                                <BlogPage />
+                            </PrivateRoute>
+                        }
+                    />
                 </Route>
             </Routes>
         </Router>

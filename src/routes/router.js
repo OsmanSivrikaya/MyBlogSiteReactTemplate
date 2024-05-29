@@ -25,6 +25,14 @@ const Routers = {
         path: "*",
         title: "NotFound",
     },
+    adminHome: {
+        path: "/admin/",
+        title: "Anasayfa",
+    },
+    adminBlog: {
+        path: "/admin/blog",
+        title: "Blog",
+    },
 };
 
 export default Routers;

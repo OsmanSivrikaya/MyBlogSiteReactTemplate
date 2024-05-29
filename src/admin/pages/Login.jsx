@@ -12,40 +12,37 @@ import Grid from "@mui/material/Grid";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import Skeleton from "@mui/material/Skeleton";
+import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
+import { login, logout } from "../../actions/authAction";
+import { useNavigate } from "react-router-dom";
 
-// Login Tarih ve web site yönlendirme kodu
-function Copyright(props) {
-  return (
-    <Typography
-      variant="body2"
-      color="text.secondary"
-      align="center"
-      {...props}
-    >
-      {"Copyright © "}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-}
-
-// TODO remove, this demo shouldn't need to reset the theme.
-
+// Varsayılan tema oluşturma
 const defaultTheme = createTheme();
 
+// Login bileşeni
 const Login = () => {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
+  const dispatch = useDispatch(); // Redux dispatch fonksiyonunu almak için kullanılır
+
+  const navigate = useNavigate(); // Router'a yönlendirme yapmak için kullanılır
+  // Form submit olduğunda çalışacak fonksiyon
+  const onSubmit = (data) => {
+    //username = mor_2314
+    //pass = 83r5^_
+    // API isteği yapacak login aksiyonunu dispatch ediyoruz
+    dispatch(login(data.email, data.password, navigate));
   };
+
+  React.useEffect(() => {
+    //componentDidMount işlemleri burada gerçekleştirilir
+    dispatch(logout());
+  }, []); // Boş bir bağımlılık dizisi vererek, bu useEffect sadece bileşen ilk kez monte edildiğinde çalışır
+
+  const {
+    register, // inputları kaydetmek için kullanılır
+    handleSubmit, // form submit işlemini yönetmek için kullanılır
+    formState: { errors }, // form hatalarını yönetmek için kullanılır
+  } = useForm();
 
   return (
     <ThemeProvider theme={defaultTheme}>
@@ -86,33 +83,38 @@ const Login = () => {
             </Typography>
             <Box
               component="form"
-              noValidate
-              onSubmit={handleSubmit}
+              onSubmit={handleSubmit(onSubmit)} // Form submit edildiğinde onSubmit fonksiyonunu çalıştır
               sx={{ mt: 1 }}
+              noValidate
+              autoComplete="off"
             >
               <TextField
                 margin="normal"
-                required
                 fullWidth
                 id="email"
                 label="Email Address"
                 name="email"
                 autoComplete="email"
                 autoFocus
+                {...register("email", { required: "Email boş geçilemez." })} // React Hook Form kullanarak email alanını kaydet ve doğrulama ekle
+                error={!!errors.email} // Hata varsa hata durumunu göster
+                helperText={errors.email ? errors.email.message : ""} // Hata mesajını göster
               />
               <TextField
                 margin="normal"
-                required
                 fullWidth
                 name="password"
                 label="Password"
                 type="password"
                 id="password"
                 autoComplete="current-password"
+                {...register("password", { required: "Şifre boş geçilemez." })} // React Hook Form kullanarak password alanını kaydet ve doğrulama ekle
+                error={!!errors.password} // Hata varsa hata durumunu göster
+                helperText={errors.password ? errors.password.message : ""} // Hata mesajını göster
               />
               <FormControlLabel
                 control={<Checkbox value="remember" color="primary" />}
-                label="Remember me"
+                label="Beni hatırla"
               />
               <Button
                 type="submit"
@@ -130,4 +132,24 @@ const Login = () => {
     </ThemeProvider>
   );
 };
+
+// Login Tarih ve web site yönlendirme kodu
+function Copyright(props) {
+  return (
+    <Typography
+      variant="body2"
+      color="text.secondary"
+      align="center"
+      {...props}
+    >
+      {"Copyright © "}
+      <Link color="inherit" href="https://mui.com/">
+        Your Website
+      </Link>{" "}
+      {new Date().getFullYear()}
+      {"."}
+    </Typography>
+  );
+}
+
 export default Login;

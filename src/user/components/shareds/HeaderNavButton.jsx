@@ -93,6 +93,16 @@ const HeaderNavButton = () => {
               İLETİŞİM
             </Link>
           </li>
+          <li className="nav-item">
+            <Link
+              className="nav-link tm-nav-link"
+              onClick={() => setActiveClass("login")}
+              id="login"
+              to="/login"
+            >
+              GİRİŞ
+            </Link>
+          </li>
         </ul>
       </div>
     </nav>

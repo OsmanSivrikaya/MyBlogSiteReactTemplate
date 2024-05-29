@@ -1,4 +1,5 @@
 import * as React from "react";
+import { Link } from "react-router-dom";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
@@ -10,15 +11,18 @@ import BarChartIcon from "@mui/icons-material/BarChart";
 import LayersIcon from "@mui/icons-material/Layers";
 import AssignmentIcon from "@mui/icons-material/Assignment";
 
+import R from "../../../routes/router";
+const { adminHome, adminBlog } = R;
+
 export const mainListItems = (
   <React.Fragment>
-    <ListItemButton>
+    <ListItemButton component={Link} to={adminHome.path}>
       <ListItemIcon>
         <DashboardIcon />
       </ListItemIcon>
       <ListItemText primary="Anasayfa" />
     </ListItemButton>
-    <ListItemButton>
+    <ListItemButton component={Link} to={adminBlog.path}>
       <ListItemIcon>
         <ShoppingCartIcon />
       </ListItemIcon>

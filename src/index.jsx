@@ -4,7 +4,7 @@ import "./css/index.css";
 import App from "./App";
 import { Provider } from "react-redux";
 import { store } from "./redux/store";
-
+import "./utilities/constants/statusCodes";
 //style için ekleniyor
 import "./css/bootstrap.min.css";
 import "./fontawesome/css/all.min.css";
