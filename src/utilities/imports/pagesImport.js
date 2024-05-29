@@ -1,0 +1,13 @@
+export * as PageRouter from "../../routes/router";
+export { default as CategoryPage } from "../../admin/pages/Category";
+export { default as AdminLayout } from "/src/admin/components/layout/AdminLayout";
+export { default as AdminHomePage } from "/src/admin/pages/Home";
+export { default as BlogPage } from "/src/admin/pages/Blog";
+export { default as HomePage } from "/src/user/pages/Home";
+export { default as AboutPage } from "/src/user/pages/About";
+export { default as ContactPage } from "/src/user/pages/Contact";
+export { default as NotFoundPage } from "/src/user/pages/NotFound";
+export { default as PrivateRoute } from "/src/routes/privateRoute";
+export { default as LoginPage } from "/src/admin/pages/Login";
+export { default as Header } from "/src/user/components/shareds/Header";
+export { default as HeaderHome } from "/src/user/components/shareds/HeaderHome";

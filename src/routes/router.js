@@ -33,6 +33,10 @@ const Routers = {
         path: "/admin/blog",
         title: "Blog",
     },
+    adminCategory: {
+        path: "/admin/category",
+        title: "Kategori",
+    },
 };
 
 export default Routers;

@@ -11,8 +11,8 @@ import BarChartIcon from "@mui/icons-material/BarChart";
 import LayersIcon from "@mui/icons-material/Layers";
 import AssignmentIcon from "@mui/icons-material/Assignment";
 
-import R from "../../../routes/router";
-const { adminHome, adminBlog } = R;
+import { PageRouter } from "../../../utilities/imports/pagesImport";
+const { adminHome, adminBlog, adminCategory } = PageRouter.default;
 
 export const mainListItems = (
   <React.Fragment>
@@ -28,7 +28,7 @@ export const mainListItems = (
       </ListItemIcon>
       <ListItemText primary="Bloglar" />
     </ListItemButton>
-    <ListItemButton>
+    <ListItemButton component={Link} to={adminCategory.path}>
       <ListItemIcon>
         <PeopleIcon />
       </ListItemIcon>
