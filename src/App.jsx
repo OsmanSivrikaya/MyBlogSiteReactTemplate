@@ -1,9 +1,12 @@
 import Section from "./routes/section";
+import { SnackbarProvider } from "notistack";
 
 function App() {
   return (
     <div>
-      <Section />
+      <SnackbarProvider maxSnack={5}>
+        <Section />
+      </SnackbarProvider>
     </div>
   );
 }

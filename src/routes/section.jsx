@@ -13,15 +13,13 @@ import {
     HomePage,
     AboutPage,
     ContactPage,
-    LoginPage as Login,
+    LoginPage,
     AdminLayout,
     AdminHomePage,
     BlogPage,
     HeaderHome,
     Header,
 } from "../utilities/imports/pagesImport";
-
-const LoginPage = lazy(() => Login);
 
 const Section = () => {
     const R = PageRouter.default;

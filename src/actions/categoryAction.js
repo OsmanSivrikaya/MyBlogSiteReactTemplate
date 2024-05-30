@@ -1,5 +1,10 @@
 import categoryService from "../services/categoryService";
 import { addCategory } from "../redux/categorySlice"; // import yolu düzenlendi
+import { enqueueSnackbar } from "notistack";
+import {
+  showSuccessMessage,
+  showErrorMessage,
+} from "/src/admin/components/helper-components/snackbar";
 
 // Category oluşturma işlemini gerçekleştiren action fonksiyonu
 export const createCategory = (categoryName) => {
@@ -8,10 +13,10 @@ export const createCategory = (categoryName) => {
       .createCategoryAsync(categoryName)
       .then((data) => {
         if (data.success) {
-          console.log("create success");
           dispatch(addCategory(data.data));
+          showSuccessMessage("Kategori eklendi.");
         } else {
-          console.log("create failed");
+          showErrorMessage("Kategori eklenemedi.");
         }
       })
       .catch((error) => {

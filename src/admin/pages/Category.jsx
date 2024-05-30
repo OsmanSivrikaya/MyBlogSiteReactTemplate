@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import ModalComponent from "../components/helper-components/modal";
-import FormComponent from "../components/helper-components/form";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import { createCategory } from "/src/actions/categoryAction";
 import { useDispatch } from "react-redux";
+import { useSnackbar } from "notistack";
 
 const Category = () => {
   const dispatch = useDispatch(); // Redux dispatch fonksiyonunu almak için kullanılır
+  const { enqueueSnackbar } = useSnackbar();
   const handleFormSubmit = async (data) => {
     dispatch(createCategory(data.CategoryName));
   };
@@ -33,15 +34,13 @@ const Category = () => {
       </Button>
     </>
   );
-
   return (
     <>
       <ModalComponent
         btnName="Kategori Ekle"
         title="Kategori Ekle"
-        formContent={({ handleClose }) => (
-          <FormComponent func={handleFormSubmit} body={formBody} />
-        )}
+        func={handleFormSubmit}
+        body={formBody}
       />
     </>
   );

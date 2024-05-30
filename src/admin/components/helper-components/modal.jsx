@@ -1,12 +1,12 @@
 import React from "react";
 import Fade from "@mui/material/Fade";
 import PropTypes from "prop-types";
-import clsx from "clsx";
 import Button from "@mui/material/Button";
 import { styled, css } from "@mui/system";
 import { Modal as BaseModal } from "@mui/base/Modal";
+import FormComponent from "./form";
 
-const ModalComponent = ({ formContent, title, btnName }) => {
+const ModalComponent = ({ formContent, title, btnName, func, body }) => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -27,7 +27,11 @@ const ModalComponent = ({ formContent, title, btnName }) => {
           <h4 id="unstyled-modal-title" className="modal-title">
             {title}
           </h4>
-          {formContent && formContent({ handleClose })}
+          {func ? (
+            <FormComponent func={func} body={body} handleClose={handleClose} />
+          ) : body ? (
+            body
+          ) : null}
         </ModalContent>
       </Modal>
     </div>
@@ -85,14 +89,6 @@ const StyledBackdrop = styled(Backdrop)`
   background-color: rgb(0 0 0 / 0.5);
   -webkit-tap-highlight-color: transparent;
 `;
-
-const style = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: 400,
-};
 
 const ModalContent = styled("div")(
   ({ theme }) => css`

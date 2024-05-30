@@ -10,9 +10,10 @@ import PeopleIcon from "@mui/icons-material/People";
 import BarChartIcon from "@mui/icons-material/BarChart";
 import LayersIcon from "@mui/icons-material/Layers";
 import AssignmentIcon from "@mui/icons-material/Assignment";
+import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 
 import { PageRouter } from "../../../utilities/imports/pagesImport";
-const { adminHome, adminBlog, adminCategory } = PageRouter.default;
+const { adminHome, adminBlog, adminCategory, login } = PageRouter.default;
 
 export const mainListItems = (
   <React.Fragment>
@@ -71,6 +72,17 @@ export const secondaryListItems = (
         <AssignmentIcon />
       </ListItemIcon>
       <ListItemText primary="Year-end sale" />
+    </ListItemButton>
+  </React.Fragment>
+);
+
+export const profileItems = (
+  <React.Fragment>
+    <ListItemButton component={Link} to={login.path}>
+      <ListItemIcon>
+        <ExitToAppIcon />
+      </ListItemIcon>
+      <ListItemText primary="Çıkış Yap" />
     </ListItemButton>
   </React.Fragment>
 );

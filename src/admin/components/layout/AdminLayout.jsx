@@ -14,7 +14,7 @@ import Container from "@mui/material/Container";
 import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import NotificationsIcon from "@mui/icons-material/Notifications";
-import { mainListItems, secondaryListItems } from "./ListItems";
+import { mainListItems, secondaryListItems, profileItems } from "./ListItems";
 import { Outlet } from "react-router-dom";
 import Link from "@mui/material/Link";
 
@@ -148,6 +148,8 @@ export default function AdminLayout() {
             {mainListItems}
             <Divider sx={{ my: 1 }} />
             {secondaryListItems}
+            <Divider sx={{ my: 1 }} />
+            {profileItems}
           </List>
         </Drawer>
         <Box
