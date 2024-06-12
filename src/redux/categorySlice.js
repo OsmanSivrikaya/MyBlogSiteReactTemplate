@@ -2,6 +2,9 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   category: [],
+  totalRecords: 0,
+  loading: false,
+  error: null,
 };
 
 export const categorySlice = createSlice({
@@ -10,12 +13,14 @@ export const categorySlice = createSlice({
   reducers: {
     addCategory: (state, action) => {
       state.category = [...state.category, action.payload];
-      console.log(state.category);
+    },
+    addArrayCategory: (state, action) => {
+      state.category = action.payload; // Yeni veriyi atama
     },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { addCategory } = categorySlice.actions;
+export const { addCategory, addArrayCategory } = categorySlice.actions;
 
 export default categorySlice.reducer;

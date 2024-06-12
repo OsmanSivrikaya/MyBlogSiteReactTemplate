@@ -2,7 +2,7 @@ import axios from "axios";
 
 // axios'u herherde çağırmak yerine function oluşturuyoruz
 const api = axios.create({
-  baseURL: "https://fakestoreapi.com",
+  baseURL: "http://localhost:7071",
   headers: {
     "Content-Type": "application/json",
   },

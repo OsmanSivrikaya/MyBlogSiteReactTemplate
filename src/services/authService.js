@@ -9,25 +9,28 @@ import { Constants, TokenHelper } from "../utilities/imports/import";
  */
 const login = (email, password) => {
     return api
-        .post("/auth/login", {
+        .post("/api/v1/Auth/Login", {
             username: email,
             password: password,
         })
         .then((response) => {
             const { data } = response;
+            var result = data;
             // Kullanıcı doğru bir şekilde giriş yaparsa
             if (response.status == window.StatusCodes.SUCCESS) {
-                const { token } = data;
-                var userData = TokenHelper.parseJWT(token);
-                if (userData) {
-                    // tokendan gelen user bilgisini storage'a kayıt ediyoruz
-                    localStorage.setItem(
-                        Constants.USER_KEY,
-                        JSON.stringify(userData),
-                    );
-                    // token'ı kayıt ediyoruz
-                    localStorage.setItem(Constants.TOKEN_KEY, token);
-                    return true;
+                if (result.success) {
+                    var token = result.data.authToken;
+                    var userData = TokenHelper.parseJWT(token);
+                    if (userData) {
+                        // tokendan gelen user bilgisini storage'a kayıt ediyoruz
+                        localStorage.setItem(
+                            Constants.USER_KEY,
+                            JSON.stringify(userData),
+                        );
+                        // token'ı kayıt ediyoruz
+                        localStorage.setItem(Constants.TOKEN_KEY, token);
+                        return true;
+                    }
                 }
             }
             return false;

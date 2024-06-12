@@ -5,18 +5,13 @@ import api from "../helpers/api";
  */
 const createCategoryAsync = async (categoryName) => {
     try {
-        const response = await api.post("/products", {
-            title: categoryName,
-            price: 13.5,
-            description: "lorem ipsum set",
-            image: "https://i.pravatar.cc",
-            category: "electronic",
+        const response = await api.post("/api/v1/BlogType", {
+            typeName: categoryName,
         });
-
         const { data } = response;
         // Kullanıcı doğru bir şekilde giriş yaparsa
-        if (response.status === window.StatusCodes.SUCCESS) {
-            return { success: true, data: data };
+        if (data.success) {
+            return { success: true, data: data.data };
         } else {
             return { success: false, data: null };
         }
@@ -26,4 +21,24 @@ const createCategoryAsync = async (categoryName) => {
     }
 };
 
-export default { createCategoryAsync };
+const getAllCategoryAsync = async (page, pageSize) => {
+    try {
+        const response = await api.get(
+            `/api/v1/BlogType?pageNumber=${page}&pageSize=${pageSize}`,
+        );
+
+        const { data } = response;
+        var result = data;
+        // Kullanıcı doğru bir şekilde giriş yaparsa
+        if (result.success) {
+            return { success: true, data: result.data };
+        } else {
+            return { success: false, data: null };
+        }
+    } catch (error) {
+        console.error("Category Creation Error:", error);
+        return { success: false, data: null, message: error.message };
+    }
+};
+
+export default { createCategoryAsync, getAllCategoryAsync };
